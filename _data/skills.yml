@@ -1,19 +1,16 @@
 - name: Software Engineer Keywords
   keywords:
       - Java
-      - C++
+      - JavaScript
       - Python
-      - Design Patterns
 
 - name: Mobile Developer Keywords
   keywords:
-      - Android
-      - Reverse Engineering
+      - React Native
 
-- name: Windows Developer Keywords
+- name: Blockchain Developer Keywords
   keywords:
-      - Win32 SDK
-      - DuiLib
-      - WTL
-      - COM
-      - WinDbg
+      - Solidity
+      - Liquidity
+      - Ethereum
+      - Tezos

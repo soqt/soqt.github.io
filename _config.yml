@@ -95,14 +95,14 @@ disqus:
     username: 
 # https://imsun.net/posts/gitment-introduction/
 gitment:
-    owner: mzlogin
+    owner: soqt
     repo: blog-comments
     oauth:
         client_id: 5b14a25f600de08b7049
         client_secret: 67efc9ff551db36b2dbef2c2c3048bc96f6113dd
 # https://github.com/gitalk/gitalk#install
 gitalk:
-    owner: mzlogin
+    owner: soqt
     repo: blog-comments
     clientID: 5b14a25f600de08b7049
     clientSecret: 67efc9ff551db36b2dbef2c2c3048bc96f6113dd
