@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-description: 暂时没用描述
+description: My stuff goes here
 keywords: Yvmeng Wang, 王雨萌
 comments: true
 menu: 关于
