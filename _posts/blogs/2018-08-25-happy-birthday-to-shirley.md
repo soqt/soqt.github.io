@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 祝小:sheep:生日快乐
-categories: blog
+categories: Blog
 description: 
 keywords: shirley
 ---
