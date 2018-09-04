@@ -3,6 +3,11 @@
       - Java
       - JavaScript
       - Python
+      - NodeJS
+
+- name: Front-end Developer
+  keywords:
+      - React/Redux
 
 - name: Mobile Developer Keywords
   keywords:
