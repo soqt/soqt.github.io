@@ -9,7 +9,6 @@ keywords: keyword1, keyword2
 Ubuntu 准备
 ---------------
 > sudo apt-get update & sudo apt-get upgrade -y
-
 > sudo apt-get install build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev libgeoip-dev libgd-dev -y
 
 > mkdir ~/nginx_compile && cd ~/nginx_compile
@@ -77,7 +76,6 @@ go to https://www.nginx.com/resources/wiki/start/topics/examples/systemd/
 
 create systemd file and copy paste. Remember to modify the path to the correct path we configured.
 > sudo touch /lib/systemd/system/nginx.service
-
 > sudo vim /lib/systemd/system/nginx.service
 
 ```
@@ -99,7 +97,6 @@ WantedBy=multi-user.target
 ```
 
 > sudo systemctl start nginx
-
 > sudo systemctl enable nginx    //enable nginx restart when reboot
 
 Certbot   -----尽量别用，用腾讯云的cert，因为会修改nginx的configure
