@@ -111,7 +111,7 @@ docker container port container-name
 显示路由
 
 ``` 
-docker container inspect --format '{{ .NetworkSettings.IPAddress}}' container-name
+docker container inspect --format '\{\{ .NetworkSettings.IPAddress\}\}' container-name
 ```
 
 查询container地址  --format 是filter
