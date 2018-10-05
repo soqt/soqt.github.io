@@ -1,5 +1,5 @@
 current directory: /Users/samwang/Developer/yvmeng.wang/vendor/bundle/ruby/2.5.0/gems/commonmarker-0.17.11/ext/commonmarker
-/usr/local/opt/ruby/bin/ruby -r ./siteconf20181005-17010-dl98sj.rb extconf.rb
+/usr/local/opt/ruby/bin/ruby -r ./siteconf20181005-34987-rok6ne.rb extconf.rb
 creating Makefile
 
 current directory: /Users/samwang/Developer/yvmeng.wang/vendor/bundle/ruby/2.5.0/gems/commonmarker-0.17.11/ext/commonmarker
@@ -118,4 +118,4 @@ linking shared-object commonmarker/commonmarker.bundle
 
 current directory: /Users/samwang/Developer/yvmeng.wang/vendor/bundle/ruby/2.5.0/gems/commonmarker-0.17.11/ext/commonmarker
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 commonmarker.bundle ./.gem.20181005-17010-1ab4xmk/commonmarker
+/usr/bin/install -c -m 0755 commonmarker.bundle ./.gem.20181005-34987-1u3eozm/commonmarker
