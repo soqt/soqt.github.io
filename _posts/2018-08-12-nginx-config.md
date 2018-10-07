@@ -17,7 +17,9 @@ sudo apt-get install build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev lib
 ```
 ### Centos
 ```
-yum install epel-release
+sudo yum install epel-release
+sudo yum groupinstall "Development Tools" -y
+sudo yum install pcre pcre-devel zlib zlib-devel openssl openssl-devel -y
 ```
 
 ### 通用
@@ -55,7 +57,7 @@ Final Nginx build configure
 -----------------------------
 ```
  ./configure
- --sbin-path=/usr/bin/nginx 
+ --sbin-path=/usr/bin/nginx
  --pid-path=/run/nginx.pid
  --conf-path=/etc/nginx/nginx.conf 
  --error-log-path=/var/log/nginx/error.log 
@@ -72,7 +74,11 @@ Final Nginx build configure
  --add-module=../ngx_brotli
  --add-module=../ngx_cache_purge-2.3
  --with-http_realip_module
- ```
+```
+--sbin-path nginx安装位置
+--conf-path config文件位置
+--with-pcre 用pcre library（regex）
+--pid-path=/var/run/nginx.pid  pid位置
 ``` 
 sudo make 
 sudo make install
