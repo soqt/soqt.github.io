@@ -6,40 +6,50 @@ description: Nginx config for my reference
 keywords: keyword1, keyword2
 ---
 
-Ubuntu 准备
+> 上次更新于2018/10/07
+
+准备工作
 ---------------
-> sudo apt-get update & sudo apt-get upgrade -y
-> sudo apt-get install build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev libgeoip-dev libgd-dev -y
+### Ubuntu
+```
+sudo apt-get update & sudo apt-get upgrade -y
+sudo apt-get install build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev libgeoip-dev libgd-dev -y
+```
+### Centos
+```
+yum install epel-release
+```
 
-> mkdir ~/nginx_compile && cd ~/nginx_compile
+### 通用
+```
+service nginx start
+mkdir ~/nginx_compile && cd ~/nginx_compile
+wget -c https://nginx.org/download/nginx-1.14.0.tar.gz && tar -zxvf nginx-1.14.0.tar.gz && rm nginx-1.14.0.tar.gz
+```
 
-> wget -c https://nginx.org/download/nginx-1.14.0.tar.gz && tar -zxvf nginx-1.14.0.tar.gz && rm nginx-1.14.0.tar.gz
-
-Download openSSL 1.1.1-pre2
+安装openSSL 1.1.1-pre2
 -----------------------------
-
+```
 wget -c https://www.openssl.org/source/openssl-1.1.1-pre2.tar.gz && tar zxf openssl-1.1.1-pre2.tar.gz && rm openssl-1.1.1-pre2.tar.gz
-
+```
 
 ngx_brotli
 -----------------------------
 Brotli是由Google的工程師所開發的一項壓縮演算法專案，目前運用在資料壓縮，當然主要是為了加快網頁的傳輸速度。目前Brotli已被各大主流瀏覽器支援，包含Chrome、Firefox、Edge與Safari等等。
-
-> git clone https://github.com/google/ngx_brotli.git
-
-> pushd ngx_brotli
-
-> git submodule update --init
-
-> popd
+```
+git clone https://github.com/google/ngx_brotli.git
+pushd ngx_brotli
+git submodule update --init
+popd
+```
 
 Purge Cache
 -----------------------------
 
 http://labs.frickle.com/nginx_ngx_cache_purge/
-
-> wget http://labs.frickle.com/files/ngx_cache_purge-2.3.tar.gz && tar -zxvf ngx_cache_purge-2.3.tar.gz && rm ngx_cache_purge-2.3.tar.gz
-
+```
+wget http://labs.frickle.com/files/ngx_cache_purge-2.3.tar.gz && tar -zxvf ngx_cache_purge-2.3.tar.gz && rm ngx_cache_purge-2.3.tar.gz
+```
 
 Final Nginx build configure
 -----------------------------
@@ -63,21 +73,23 @@ Final Nginx build configure
  --add-module=../ngx_cache_purge-2.3
  --with-http_realip_module
  ```
- 
- > sudo make 
- 
- > sudo make install
- 
+``` 
+sudo make 
+sudo make install
+``` 
  
 Systemd Settings:
 -----------------------------
-> sudo nginx -s stop
+```
+sudo nginx -s stop
+```
 go to https://www.nginx.com/resources/wiki/start/topics/examples/systemd/
 
 create systemd file and copy paste. Remember to modify the path to the correct path we configured.
-> sudo touch /lib/systemd/system/nginx.service
-> sudo vim /lib/systemd/system/nginx.service
-
+```
+sudo touch /lib/systemd/system/nginx.service
+sudo vim /lib/systemd/system/nginx.service
+```
 ```
 [Unit]
 Description=The NGINX HTTP and reverse proxy server
@@ -95,11 +107,12 @@ PrivateTmp=true
 [Install]
 WantedBy=multi-user.target
 ```
+```
+sudo systemctl start nginx
+sudo systemctl enable nginx    //enable nginx restart when reboot
+```
 
-> sudo systemctl start nginx
-> sudo systemctl enable nginx    //enable nginx restart when reboot
-
-Certbot   -----尽量别用，用腾讯云的cert，因为会修改nginx的configure
+Certbot  (尽量别用，因为会修改nginx的configure，腾讯云有一年免费SSL证书)
 ----------------------------------------------------------
 去官网安装certbot
 修改 nginx.conf 中 http > server > server_name example.com
@@ -118,13 +131,13 @@ location = /.well-known/acme-challenge/ {
 ```
 
 sudo service nginx reload
-
-> sudo certbot certonly --webroot -w /usr/share/nginx/html/ -d your.domain.com
-
+```
+sudo certbot certonly --webroot -w /usr/share/nginx/html/ -d your.domain.com
+```
 renew:
-
-> sudo crontab -e
-
+```
+sudo crontab -e
+```
 ```
 @daily sudo certbot renew
 ```

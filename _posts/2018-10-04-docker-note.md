@@ -285,6 +285,85 @@ docker image tag tag-name:additional-tag dockerHubName/tag-name:additional-tag
 docker push dockerHubName/tag-name:additional-tag
 ```
 
+## 数据保存
+container是不可更改，稍纵即逝的，不应该用于保存数据。
+Docker有两种解决方式：Volumes和Bind Mounts
+Volumes是在container外部规定一个区域用来存储数据
+Bind Mounts用来加载外部数据。
+
+### Volumes
+在Dockerfile中添加Volume规则
+> VOLUME /path/to/db
+删除container后不会影响Volume，需要多一个步骤将其删除。
+
+```
+docker volume ls
+```
+可以用来查看当前机器创建了多少Volumes
+```
+docker volume inspect XXX
+```
+如果在linux机器上，通过Mountpoint地址可以看到数据。Mac和Windows看不到(在linux VM里)
+
+如果需要创建Volume，记得在docker container run的时候添加 -v name:/path/to/db 来定义Volume名称。否则很难区分Volume对应的container
+
+> docker volume create 
+
+
+## Bind Mounting
+将host的文件或目录映射到container的文件或目录。
+无法在Dockerfile里写，只能通过```container run -v /Users/username/stuff:/path/container```实现。
+```
+docker container run -d --name nginx -p 80:80 -v $(pwd):/usr/share/nginx/html nginx
+```
+将当前目录$(pwd)映射到/usr/share/nginx/html里面，当当前目录变的时候，container里面的文件也会变。
+
+
+## Docker Compose
+* 保存docker run settings
+* 使用YAML
+* CLI tool
+
+```
+version: '3.1'
+
+service:
+	servicename: #DNS name inside network
+		image:
+		command: #replace the default CMD specified by the image
+		environment:
+		volumes:
+		ports:
+		  - 80:80
+	servicename2:
+
+volumes:
+
+networks:
+```
+```
+docker-compose up -d
+```
+```
+docker-compose down
+```
+后台运行当前docker compose
+```
+docker compose top
+```
+查看container中的services
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
