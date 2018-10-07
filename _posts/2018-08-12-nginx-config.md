@@ -15,28 +15,35 @@ keywords: keyword1, keyword2
 sudo apt-get update & sudo apt-get upgrade -y
 sudo apt-get install build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev libgeoip-dev libgd-dev -y
 ```
+> apt-get install apache2-utils 如果想用basic auth
 ### Centos
 ```
-sudo yum install epel-release
 sudo yum groupinstall "Development Tools" -y
-sudo yum install pcre pcre-devel zlib zlib-devel openssl openssl-devel -y
+sudo yum install epel-release pcre pcre-devel zlib zlib-devel openssl openssl-devel gd-devel GeoIP GeoIP-devel GeoIP-data -y
 ```
+> yum install httpd-tool 如果想用basic auth
+
+### Centos
 
 ### 通用
 ```
-service nginx start
 mkdir ~/nginx_compile && cd ~/nginx_compile
-wget -c https://nginx.org/download/nginx-1.14.0.tar.gz && tar -zxvf nginx-1.14.0.tar.gz && rm nginx-1.14.0.tar.gz
+wget -c https://nginx.org/download/nginx-1.15.5.tar.gz && 
+tar -zxvf nginx-1.15.5.tar.gz && rm nginx-1.15.5.tar.gz **
+rm nginx-1.15.5.tar.gz
 ```
 
-安装openSSL 1.1.1-pre2
+安装依赖包
 -----------------------------
+### openSSL 1.1.1-pre2
 ```
-wget -c https://www.openssl.org/source/openssl-1.1.1-pre2.tar.gz && tar zxf openssl-1.1.1-pre2.tar.gz && rm openssl-1.1.1-pre2.tar.gz
+cd ~/nginx_compile
+wget -c https://www.openssl.org/source/openssl-1.1.1.tar.gz && 
+tar zxf openssl-1.1.1.tar.gz && 
+rm openssl-1.1.1.tar.gz
 ```
 
-ngx_brotli
------------------------------
+### ngx_brotli
 Brotli是由Google的工程師所開發的一項壓縮演算法專案，目前運用在資料壓縮，當然主要是為了加快網頁的傳輸速度。目前Brotli已被各大主流瀏覽器支援，包含Chrome、Firefox、Edge與Safari等等。
 ```
 git clone https://github.com/google/ngx_brotli.git
@@ -45,15 +52,14 @@ git submodule update --init
 popd
 ```
 
-Purge Cache
------------------------------
+### Purge Cache
 
 http://labs.frickle.com/nginx_ngx_cache_purge/
 ```
 wget http://labs.frickle.com/files/ngx_cache_purge-2.3.tar.gz && tar -zxvf ngx_cache_purge-2.3.tar.gz && rm ngx_cache_purge-2.3.tar.gz
 ```
 
-Final Nginx build configure
+Config Nginx与安装
 -----------------------------
 ```
  ./configure
@@ -70,18 +76,19 @@ Final Nginx build configure
  --with-http_gzip_static_module 
  --without-http_autoindex_module
  --with-http_geoip_module
- --with-openssl=../openssl-1.1.1-pre2 
+ --with-openssl=../openssl-1.1.1
  --add-module=../ngx_brotli
  --add-module=../ngx_cache_purge-2.3
  --with-http_realip_module
 ```
---sbin-path nginx安装位置
---conf-path config文件位置
---with-pcre 用pcre library（regex）
---pid-path=/var/run/nginx.pid  pid位置
+--sbin-path nginx安装位置  
+--conf-path config文件位置  
+--with-pcre 用pcre library(regex)  
+--pid-path=/var/run/nginx.pid  pid位置  
 ``` 
 sudo make 
-sudo make install
+sudo make install  
+sudo nginx
 ``` 
  
 Systemd Settings:
@@ -158,4 +165,11 @@ brotli on;
 brotli_comp_level 6;
 #『brotli_types』的值僅作參考，請依你的環境去做設定。
 brotli_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript image/x-icon application/vnd.ms-fontobject font/opentype application/x-font-ttf;
+```
+
+安全
+----------------------------
+安装Diffie-Hellman 
+```
+sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 ```
