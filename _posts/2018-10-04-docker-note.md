@@ -353,8 +353,23 @@ docker compose top
 ```
 查看container中的services
 
-
-
+```
+services:
+  proxy:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+  image: nginx-custom  
+  ports:
+      - '80:80'
+  web:
+    image: httpd
+    volumes:
+      - ./html:/usr/local/apache2/htdocs/
+```
+dockerfile指向当前目录自定义的dockerfile，这里是一个nginx的自定义image  
+第二个service是server，把当前html目录绑定到container里面，所以可以在runtime情况下改变网页文件  
+一般情况下会有第三个service作为database  
 
 
 
