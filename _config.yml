@@ -99,5 +99,4 @@ theme: ocean
 deploy:
   type: git
   repo: https://github.com/soqt/soqt.github.io
-  branch: [branch] #published
-  message: [message]
+  branch: master #published
