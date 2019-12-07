@@ -6,4 +6,7 @@ _site/
 .DS_Store
 Gemfile.lock
 vendor/
+<<<<<<< HEAD
 node_modules
+=======
+>>>>>>> 6fb23471fc6c64da54eb4e230684fa544a2eb0c6
