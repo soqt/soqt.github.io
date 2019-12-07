@@ -88,7 +88,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yvmeng.wang/2018/08/26/2018-08-26-p3d-contract-analysis/" data-id="ck3ve97bi00059lvp6t8p4bae"
+      <a data-url="http://yvmeng.wang/2018/08/26/2018-08-26-p3d-contract-analysis/" data-id="ck3vhbvhe0001jvvp54zv929v"
          class="article-share-link">Share</a>
       
     </footer>
@@ -174,7 +174,7 @@
       </li>
     
     <li class="nav-item">
-      <a class="nav-item-link nav-item-search" title="Search">
+      <a class="nav-item-link nav-item-search" title="搜索">
         <i class="fe fe-search"></i>
         Search
       </a>
@@ -222,6 +222,15 @@
       positionFixedClass: 'is-position-fixed',
       fixedSidebarOffset: 'auto',
     });
+  </script>
+
+
+
+  <script>
+  // 使用fancybox来显示post图片集(#andus-head-img为头像id)
+  $('img:not(#andus-head-img)').each(function() {
+    $(this).wrap('<a class="fancybox" data-fancybox="gallery" href="' + $(this).prop("src") + '"></a>'); 
+  })
   </script>
 
 
