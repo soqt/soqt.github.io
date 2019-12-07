@@ -80,16 +80,21 @@
       
         
         
-          <h4 id="2019年3月更新"><a href="#2019年3月更新" class="headerlink" title="2019年3月更新"></a>2019年3月更新</h4><ul>
+          <h4 id="2019年3月更新"><a class="markdownIt-Anchor" href="#2019年3月更新"></a> 2019年3月更新</h4>
+<ul>
 <li>更新docker swarm及secret</li>
 </ul>
-<h2 id="为什么要用Docker"><a href="#为什么要用Docker" class="headerlink" title="为什么要用Docker"></a>为什么要用Docker</h2><p>Docker是一个轻量级的虚拟系统，我们叫它容器。因不同系统和版本的不同，部署服务器的时候总是会出现不同的错误，让开发效率大大降低。docker的出现让服务器开发不再受限于系统版本，让一套代码永远可以在不同服务器上一致运行。同时docker也是微服务架构中不可缺少的部分，让不同微服务之间协调效率高效。</p>
-<h2 id="第一个Docker-Container"><a href="#第一个Docker-Container" class="headerlink" title="第一个Docker Container"></a>第一个Docker Container</h2><h2 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h2><p>Linux可以通过<a href="https://get.docker.com/" target="_blank" rel="noopener">get.docker.com</a>快捷安装。<br>复制文档前面注释中的代码脚步即可</p>
+<h2 id="为什么要用docker"><a class="markdownIt-Anchor" href="#为什么要用docker"></a> 为什么要用Docker</h2>
+<p>Docker是一个轻量级的虚拟系统，我们叫它容器。因不同系统和版本的不同，部署服务器的时候总是会出现不同的错误，让开发效率大大降低。docker的出现让服务器开发不再受限于系统版本，让一套代码永远可以在不同服务器上一致运行。同时docker也是微服务架构中不可缺少的部分，让不同微服务之间协调效率高效。</p>
+<h2 id="第一个docker-container"><a class="markdownIt-Anchor" href="#第一个docker-container"></a> 第一个Docker Container</h2>
+<h2 id="docker安装"><a class="markdownIt-Anchor" href="#docker安装"></a> Docker安装</h2>
+<p>Linux可以通过<a href="https://get.docker.com/" target="_blank" rel="noopener">get.docker.com</a>快捷安装。<br />
+复制文档前面注释中的代码脚步即可</p>
 <p>安装完成后，这是几个常用的CLI(command line interface)命令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">systemctl start docker   &#x2F;&#x2F; 启动docker服务</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">systemctl stop docker    &#x2F;&#x2F; 停止docker服务</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">systemctl restart docker &#x2F;&#x2F; 重启docker服务</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">systemctl status docker  &#x2F;&#x2F; 查看docker服务状态</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">systemctl enable docker  &#x2F;&#x2F; 开机启动docker服务</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">systemctl disable docker &#x2F;&#x2F; 取消开机启动docker服务</span></pre></td></tr></table></figure>
-
-<p>在运行<code>systemctl start docker</code>后，可以试一下<code>docker container run  hello-world</code>，之后会在命令栏中print出来行 hello-world即代表安装成功</p>
-<h2 id="制作一个Nginx的容器"><a href="#制作一个Nginx的容器" class="headerlink" title="制作一个Nginx的容器"></a>制作一个Nginx的容器</h2><p>每一个容器都相当于一个虚拟系统</p>
+<p>在运行<code>systemctl start docker</code>后，可以试一下<code>docker container run hello-world</code>，之后会在命令栏中print出来行 hello-world即代表安装成功</p>
+<h2 id="制作一个nginx的容器"><a class="markdownIt-Anchor" href="#制作一个nginx的容器"></a> 制作一个Nginx的容器</h2>
+<p>每一个容器都相当于一个虚拟系统</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container run --publish 80:80 --detach --name webhost nginx</span></pre></td></tr></table></figure>
 <p>这行命令的运行流程：</p>
 <ol>
@@ -107,32 +112,31 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container logs container-name</span></pre></td></tr></table></figure>
 <p>删除container。名称或id可以叠加用于删除多项container</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker rm container-name</span></pre></td></tr></table></figure>
-
-<h2 id="Image镜像-vs-Container容器"><a href="#Image镜像-vs-Container容器" class="headerlink" title="Image镜像 vs Container容器"></a>Image镜像 vs Container容器</h2><p>Container是Image的实例</p>
+<h2 id="image镜像-vs-container容器"><a class="markdownIt-Anchor" href="#image镜像-vs-container容器"></a> Image镜像 vs Container容器</h2>
+<p>Container是Image的实例</p>
 <p>可以理解为Image是一个class类，container是新建的对象</p>
 <p>Image是如和新建Container的一个说明书</p>
-<h2 id="Cheat-sheet"><a href="#Cheat-sheet" class="headerlink" title="Cheat sheet"></a>Cheat sheet</h2><p>向container里传递环境参数</p>
+<h2 id="cheat-sheet"><a class="markdownIt-Anchor" href="#cheat-sheet"></a> Cheat sheet</h2>
+<p>向container里传递环境参数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">--env or -e</span></pre></td></tr></table></figure>
 <p>查看container里面的top process</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container top container-name</span></pre></td></tr></table></figure>
 <p>显示这个container的metadata（配置，网络等）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container insepct</span></pre></td></tr></table></figure>
-
 <p>显示实时信息（简单的监测）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container stats</span></pre></td></tr></table></figure>
-
 <p>进入容器交互(interactive)模式(就是进去虚拟系统)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container run -it CONTAINER_NAME bash</span></pre></td></tr></table></figure>
 <p>-t : pseudo-TTY</p>
 <p>-i : interactive</p>
-<h2 id="创建一个ubuntu的容器"><a href="#创建一个ubuntu的容器" class="headerlink" title="创建一个ubuntu的容器"></a>创建一个ubuntu的容器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container run -it --name ubuntu ubuntu</span></pre></td></tr></table></figure>
-
+<h2 id="创建一个ubuntu的容器"><a class="markdownIt-Anchor" href="#创建一个ubuntu的容器"></a> 创建一个ubuntu的容器</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container run -it --name ubuntu ubuntu</span></pre></td></tr></table></figure>
 <p>如果退出后再次进入的命令会不一样:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container start -ai ubuntu</span></pre></td></tr></table></figure>
 <p>进入一个正在运行的container的shell（创建了一个多出的process）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container exec -it container-name bash</span></pre></td></tr></table></figure>
-
-<h2 id="Docker-网络"><a href="#Docker-网络" class="headerlink" title="Docker 网络"></a>Docker 网络</h2><p>-p 用来暴露你的网络接口</p>
+<h2 id="docker-网络"><a class="markdownIt-Anchor" href="#docker-网络"></a> Docker 网络</h2>
+<p>-p 用来暴露你的网络接口</p>
 <ul>
 <li>每一个container接入一个私有虚拟网络“bridge”</li>
 <li>每一个虚拟网络通过NAT防火墙路由出去</li>
@@ -140,62 +144,60 @@
 <li>最好为每一个独立App建立一个自己的虚拟网络（比如给mongo和node单独创建一个虚拟网络）</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container port container-name</span></pre></td></tr></table></figure>
-
 <p>显示路由</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container inspect --format &#39;\&#123;\&#123; .NetworkSettings.IPAddress\&#125;\&#125;&#39; container-name</span></pre></td></tr></table></figure>
-
-<p>查询container地址  –format 是filter</p>
-<p><img src="../docker-note/docker-network.png" alt="docker-network"> docker network</p>
+<p>查询container地址  --format 是filter</p>
+<p><img src="../docker-note/docker-network.png" alt="docker-network" /> docker network</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker network ls</span></pre></td></tr></table></figure>
-
-<p>显示所有网络<br>birdge是默认网络，连接外网<br>host是绕过bridge直接连接外网（性能好，安全性低）<br>none什么都不连接</p>
+<p>显示所有网络<br />
+birdge是默认网络，连接外网<br />
+host是绕过bridge直接连接外网（性能好，安全性低）<br />
+none什么都不连接</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker network inspect container-name</span></pre></td></tr></table></figure>
-
-<p>查看网络<br>docker network inspect bridge 可以查看哪些container正在连着bridge。“IPAM”是自动被赋值的IP地址。默认subnet “172.17.0.0/16”</p>
+<p>查看网络<br />
+docker network inspect bridge 可以查看哪些container正在连着bridge。“IPAM”是自动被赋值的IP地址。默认subnet “172.17.0.0/16”</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">dokcer network create --drive</span></pre></td></tr></table></figure>
-
-<p>建立一个网络<br>–drive 指定一个drive（bridge host none或者第三方dirve）默认bridge</p>
+<p>建立一个网络<br />
+–drive 指定一个drive（bridge host none或者第三方dirve）默认bridge</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker network connet</span></pre></td></tr></table></figure>
-
-<p>连接一个网络<br>一个container可以连接到两个network上</p>
+<p>连接一个网络<br />
+一个container可以连接到两个network上</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker network disconnect</span></pre></td></tr></table></figure>
-
 <p>退出一个网络</p>
 <p>如果要让新的container连接到该网络:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container run -d --name new_nginx --network new_network_name nginx</span></pre></td></tr></table></figure>
-
-<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>因为container中的IP是不固定的，所以需要DNS<br>两个在相同虚拟网络下的container可以默认通过名字互通</p>
+<h2 id="dns"><a class="markdownIt-Anchor" href="#dns"></a> DNS</h2>
+<p>因为container中的IP是不固定的，所以需要DNS<br />
+两个在相同虚拟网络下的container可以默认通过名字互通</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container exec -it con2 ping con1</span></pre></td></tr></table></figure>
-
 <p>其中con1和con2在同一网络下（需要先apt-get update &amp;&amp; apt-get install -y inputils-ping）</p>
-<h2 id="DNS-Round-Robin-Test"><a href="#DNS-Round-Robin-Test" class="headerlink" title="DNS Round Robin Test"></a>DNS Round Robin Test</h2><ol>
+<h2 id="dns-round-robin-test"><a class="markdownIt-Anchor" href="#dns-round-robin-test"></a> DNS Round Robin Test</h2>
+<ol>
 <li>新建一个虚拟网络</li>
 <li>创建两个elasticsearch:2的镜像</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">eg: docker container run --name elastic1 -d --network test --network-alias search elasticsearch:1</span></pre></td></tr></table></figure>
-
 <ol start="3">
 <li>使用–network-alias为两个container标记alias</li>
-<li>运行docker container run –rm –net ass centos curl -s search:9200 附加为–net查看同样DNS名称下的两个网络</li>
-<li>centos curl -s search:9200 –net</li>
+<li>运行docker container run --rm --net ass centos curl -s search:9200 附加为–net查看同样DNS名称下的两个网络</li>
+<li>centos curl -s search:9200 --net</li>
 </ol>
-<h2 id="Docker-image"><a href="#Docker-image" class="headerlink" title="Docker image"></a>Docker image</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker pull nginx:latest</span></pre></td></tr></table></figure>
-
+<h2 id="docker-image"><a class="markdownIt-Anchor" href="#docker-image"></a> Docker image</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker pull nginx:latest</span></pre></td></tr></table></figure>
 <p>生产环境下，最好为Image标注一个固定的版本号，不要用latest</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker history nginx:latest</span></pre></td></tr></table></figure>
-
-<p>显示全部nginx的历史layer，每一个layer都代表了一次更新，每一层layer共同组成了一个image<br>共同使用的layer不会被下载，每一个layer有唯一的SHA区分</p>
+<p>显示全部nginx的历史layer，每一个layer都代表了一次更新，每一层layer共同组成了一个image<br />
+共同使用的layer不会被下载，每一个layer有唯一的SHA区分</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker inspect nginx:latest</span></pre></td></tr></table></figure>
-
-<p>显示这个image的metadata比如“ContainerConfig”: “ExpposedPorts”说明哪个接口会被期望被开通，”Cmd”显示哪些command在运行时会被运行…</p>
+<p>显示这个image的metadata比如“ContainerConfig”: &quot;ExpposedPorts&quot;说明哪个接口会被期望被开通，&quot;Cmd&quot;显示哪些command在运行时会被运行…</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker image tag nginx dockerHubName&#x2F;nginx</span></pre></td></tr></table></figure>
-
-<p>为image加一个tag,tag不会改变Image ID，如果后面不添加tag（详情下一行）,默认latest<br>需要加自己dockerhub的tag才可以push上去</p>
+<p>为image加一个tag,tag不会改变Image ID，如果后面不添加tag（详情下一行）,默认latest<br />
+需要加自己dockerhub的tag才可以push上去</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker image tag nginx dockerHubName&#x2F;ngnix dockerHubName&#x2F;nginx:testing</span></pre></td></tr></table></figure>
-
 <p>为这个Image添加一个testing的tag</p>
 <p>如果想让repo是私人的，现在docker hub上创建一个private repo再push</p>
-<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><blockquote>
+<h2 id="dockerfile"><a class="markdownIt-Anchor" href="#dockerfile"></a> Dockerfile</h2>
+<blockquote>
 <p>docker build -f some-dockerfile</p>
 </blockquote>
 <blockquote>
@@ -211,41 +213,48 @@
 </blockquote>
 <p>复制source code从local</p>
 <blockquote>
-<p>EVN: </p>
+<p>EVN:</p>
 </blockquote>
-<p>eg. NGINX_VERSION 1.11.10-jessie<br>导入环境变量</p>
+<p>eg. NGINX_VERSION 1.11.10-jessie<br />
+导入环境变量</p>
 <blockquote>
 <p>RUN:</p>
 </blockquote>
-<p>运行Shell command, 两个command之间可以用&amp;&amp;连接，表示在同一layer<br>RUN可以有多个</p>
+<p>运行Shell command, 两个command之间可以用&amp;&amp;连接，表示在同一layer<br />
+RUN可以有多个</p>
 <p>**Docker有自己的log file(stdout, stderr)，所以用Nginx自带的log并不是最理性的解决方案</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">RUN ln -sf &#x2F;dev&#x2F;stdout &#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log &amp;&amp; ln -sf &#x2F;dev&#x2F;stderr &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log</span></pre></td></tr></table></figure>
-
 <p>将nginx的log导入进docker</p>
 <blockquote>
 <p>EXPOSE:</p>
 </blockquote>
-<p>允许暴露的接口，比如web需要暴露 <strong>EXPOSE: 80 443</strong><br>但是这只是允许权限,还是需要用<strong>-p</strong>在host中暴露这些接口</p>
+<p>允许暴露的接口，比如web需要暴露 <strong>EXPOSE: 80 443</strong><br />
+但是这只是允许权限,还是需要用**-p**在host中暴露这些接口</p>
 <blockquote>
 <p>CMD: []  required 但是可以inherit from FROM image</p>
 </blockquote>
 <p>当container运行的时候运行的命令，Dockerfile中只能存在一个CMD，如果存在多个，最后一个优先级最高</p>
-<h2 id="Build-Dockerfile"><a href="#Build-Dockerfile" class="headerlink" title="Build Dockerfile"></a>Build Dockerfile</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">dokcer image build -t customnginx .</span></pre></td></tr></table></figure>
-
-<p>第一次build时间较长，但是所有步骤会被存cache。<br>修改一行Dockerfile中的文件后，这一行之后的所有步骤都会重新build，所以文件order很重要，把多变的代码放在后面。</p>
-<h2 id="小节"><a href="#小节" class="headerlink" title="小节"></a>小节</h2><p>创建Dockerfile，如果能用offical repo的base image就用official的，如果不能满足要求就去Docker hub看看有没有可靠高的image。都不能满足要求可以自己用minimal distribution创建自己的Dockerfile。</p>
+<h2 id="build-dockerfile"><a class="markdownIt-Anchor" href="#build-dockerfile"></a> Build Dockerfile</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">dokcer image build -t customnginx .</span></pre></td></tr></table></figure>
+<p>第一次build时间较长，但是所有步骤会被存cache。<br />
+修改一行Dockerfile中的文件后，这一行之后的所有步骤都会重新build，所以文件order很重要，把多变的代码放在后面。</p>
+<h2 id="小节"><a class="markdownIt-Anchor" href="#小节"></a> 小节</h2>
+<p>创建Dockerfile，如果能用offical repo的base image就用official的，如果不能满足要求就去Docker hub看看有没有可靠高的image。都不能满足要求可以自己用minimal distribution创建自己的Dockerfile。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker image build -t tag-name .</span></pre></td></tr></table></figure>
-
 <p>build已创建的Dockerfile并标注tag</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container run -p 80:80 tag-name</span></pre></td></tr></table></figure>
-
 <p>运行刚刚创建的image</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker image tag tag-name:additional-tag dockerHubName&#x2F;tag-name:additional-tag</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker push dockerHubName&#x2F;tag-name:additional-tag</span></pre></td></tr></table></figure>
-
-<h2 id="数据保存"><a href="#数据保存" class="headerlink" title="数据保存"></a>数据保存</h2><p>container是不可更改，稍纵即逝的，不应该用于保存数据。<br>Docker有两种解决方式：Volumes和Bind Mounts<br>Volumes是在container外部规定一个区域用来存储数据<br>Bind Mounts用来加载外部数据。</p>
-<h3 id="Volumes"><a href="#Volumes" class="headerlink" title="Volumes"></a>Volumes</h3><p>在Dockerfile中添加Volume规则</p>
+<h2 id="数据保存"><a class="markdownIt-Anchor" href="#数据保存"></a> 数据保存</h2>
+<p>container是不可更改，稍纵即逝的，不应该用于保存数据。<br />
+Docker有两种解决方式：Volumes和Bind Mounts<br />
+Volumes是在container外部规定一个区域用来存储数据<br />
+Bind Mounts用来加载外部数据。</p>
+<h3 id="volumes"><a class="markdownIt-Anchor" href="#volumes"></a> Volumes</h3>
+<p>在Dockerfile中添加Volume规则</p>
 <blockquote>
-<p>VOLUME /path/to/db<br>删除container后不会影响Volume，需要多一个步骤将其删除。</p>
+<p>VOLUME /path/to/db<br />
+删除container后不会影响Volume，需要多一个步骤将其删除。</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker volume ls</span></pre></td></tr></table></figure>
 <p>可以用来查看当前机器创建了多少Volumes</p>
@@ -253,40 +262,47 @@
 <p>如果在linux机器上，通过Mountpoint地址可以看到数据。Mac和Windows看不到(在linux VM里)</p>
 <p>如果需要创建Volume，记得在docker container run的时候添加 -v name:/path/to/db 来定义Volume名称。否则很难区分Volume对应的container</p>
 <blockquote>
-<p>docker volume create </p>
+<p>docker volume create</p>
 </blockquote>
-<h2 id="Bind-Mounting"><a href="#Bind-Mounting" class="headerlink" title="Bind Mounting"></a>Bind Mounting</h2><p>将host的文件或目录映射到container的文件或目录。<br>无法在Dockerfile里写，只能通过<code>container run -v /Users/username/stuff:/path/container</code>实现。</p>
+<h2 id="bind-mounting"><a class="markdownIt-Anchor" href="#bind-mounting"></a> Bind Mounting</h2>
+<p>将host的文件或目录映射到container的文件或目录。<br />
+无法在Dockerfile里写，只能通过<code>container run -v /Users/username/stuff:/path/container</code>实现。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container run -d --name nginx -p 80:80 -v $(pwd):&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html nginx</span></pre></td></tr></table></figure>
 <p>将当前目录$(pwd)映射到/usr/share/nginx/html里面，当当前目录变的时候，container里面的文件也会变。</p>
-<h2 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h2><ul>
+<h2 id="docker-compose"><a class="markdownIt-Anchor" href="#docker-compose"></a> Docker Compose</h2>
+<ul>
 <li>保存docker run settings</li>
 <li>使用YAML</li>
 <li>CLI tool</li>
 </ul>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="attr">service:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">	<span class="attr">servicename:</span> <span class="comment">#DNS name inside network</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">		<span class="attr">image:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">		<span class="attr">command:</span> <span class="comment">#replace the default CMD specified by the image</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">		<span class="attr">environment:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">		<span class="attr">volumes:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">		<span class="attr">ports:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">		  <span class="bullet">-</span> <span class="number">80</span><span class="string">:80</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">	<span class="attr">servicename2:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="attr">volumes:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="attr">networks:</span></span></pre></td></tr></table></figure>
-
-
 <p>后台运行当前docker compose</p>
 <figure class="highlight plain"><figcaption><span>up -d ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">卸载docker compose</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&gt; docker-compose down</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">查看container中的services</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&gt;docker compose top</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;yml</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">services:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  proxy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    build:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      context: .</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      dockerfile: nginx.Dockerfile</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  image: nginx-custom  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  ports:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      - &#39;80:80&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  web:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    image: httpd</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    volumes:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">      - .&#x2F;html:&#x2F;usr&#x2F;local&#x2F;apache2&#x2F;htdocs&#x2F;</span></pre></td></tr></table></figure>
-<p>dockerfile指向当前目录自定义的dockerfile，这里是一个nginx的自定义image<br>第二个service是server，把当前html目录绑定到container里面，所以可以在runtime情况下改变网页文件<br>一般情况下会有第三个service作为database  </p>
-<h2 id="Docker-Swarm"><a href="#Docker-Swarm" class="headerlink" title="Docker Swarm"></a>Docker Swarm</h2><p>docker swarm 是docker提供的非常易学高效的分布式部署方式</p>
-<h2 id="Swarm集群初始化"><a href="#Swarm集群初始化" class="headerlink" title="Swarm集群初始化"></a>Swarm集群初始化</h2><figure class="highlight docker"><figcaption><span>swarm init [OPTIONS]```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">options:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">⋅⋅⋅*--advertise-addr: 多网卡的情况下，指定需要使用的ip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">⋅⋅⋅*--listen-addr: 指定监听的 ip 与端口</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;!-- ⋅⋅⋅*--availability: 节点的有效性(<span class="string">"active"</span>|<span class="string">"pause"</span>|<span class="string">"drain"</span>) --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">```docker service``` 相当于docker container <span class="keyword">run</span><span class="bash">。区别在于这是给orchestration命令，让它放在queue里自动部署</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">```docker service update```可以更新正在运行的services的一些参数，用于rolling update</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="comment">## overlay network</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">同一swarm下容器之间的访问。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">```docker network create --driver overlay NETWORK_NAME</span></pre></td></tr></table></figure>
-
+<p>dockerfile指向当前目录自定义的dockerfile，这里是一个nginx的自定义image<br />
+第二个service是server，把当前html目录绑定到container里面，所以可以在runtime情况下改变网页文件<br />
+一般情况下会有第三个service作为database</p>
+<h2 id="docker-swarm"><a class="markdownIt-Anchor" href="#docker-swarm"></a> Docker Swarm</h2>
+<p>docker swarm 是docker提供的非常易学高效的分布式部署方式</p>
+<h2 id="swarm集群初始化"><a class="markdownIt-Anchor" href="#swarm集群初始化"></a> Swarm集群初始化</h2>
+<figure class="highlight docker"><figcaption><span>swarm init [OPTIONS]```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">options:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">⋅⋅⋅*--advertise-addr: 多网卡的情况下，指定需要使用的ip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">⋅⋅⋅*--listen-addr: 指定监听的 ip 与端口</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;!-- ⋅⋅⋅*--availability: 节点的有效性(<span class="string">"active"</span>|<span class="string">"pause"</span>|<span class="string">"drain"</span>) --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">```docker service``` 相当于docker container <span class="keyword">run</span><span class="bash">。区别在于这是给orchestration命令，让它放在queue里自动部署</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">```docker service update```可以更新正在运行的services的一些参数，用于rolling update</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="comment">## overlay network</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">同一swarm下容器之间的访问。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">```docker network create --driver overlay NETWORK_NAME</span></pre></td></tr></table></figure>
 <p>然后用docker service部署在这个NETWORK_NAME网络中即可</p>
-<h2 id="Routing-Mesh"><a href="#Routing-Mesh" class="headerlink" title="Routing Mesh"></a>Routing Mesh</h2><p>Load balances Swarm services across their tasks<br>所以在公开接口上的请求都会被自动load balance到不同node上.<br>这个load balancer是在OSI Layer 3(TCP)上的，不是在Layer4(DNS)，并且是stateless<br>意思是只能在访问IP和port的时候才可以导流，如果一台服务器运行多个server并运行在一个swarm中，则需要在DNS的Layer上创建一个Nginx(stateful load balancers)</p>
+<h2 id="routing-mesh"><a class="markdownIt-Anchor" href="#routing-mesh"></a> Routing Mesh</h2>
+<p>Load balances Swarm services across their tasks<br />
+所以在公开接口上的请求都会被自动load balance到不同node上.<br />
+这个load balancer是在OSI Layer 3(TCP)上的，不是在Layer4(DNS)，并且是stateless<br />
+意思是只能在访问IP和port的时候才可以导流，如果一台服务器运行多个server并运行在一个swarm中，则需要在DNS的Layer上创建一个Nginx(stateful load balancers)</p>
 <p>在overlay network上，cluster中访问任意一个node的IP都可以得到相同的结果</p>
-<h2 id="Docker-Stack"><a href="#Docker-Stack" class="headerlink" title="Docker Stack"></a>Docker Stack</h2><p>docker compose file for swarm</p>
+<h2 id="docker-stack"><a class="markdownIt-Anchor" href="#docker-stack"></a> Docker Stack</h2>
+<p>docker compose file for swarm</p>
 <figure class="highlight docker"><figcaption><span>stack deploy```自动部署services，但deploy不支持build。需要把自己的image build一下并上传到repo中，在stack中换成repo中的image</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">```yml</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">version: <span class="string">"3"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">services:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  redis:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    image: redis:alpine</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    ports:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      - <span class="string">"6379"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    networks:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      - frontend</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    deploy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      replicas: <span class="number">2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      update_config:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        parallelism: <span class="number">2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        delay: <span class="number">10</span>s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      restart_policy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        condition: on-failure</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  db:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    image: postgres:<span class="number">9.4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    volumes:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      - db-data:/var/lib/postgresql/data</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    networks:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">      - backend</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    deploy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">      placement:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">        constraints: [node.role == manager]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">  vote:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    image: dockersamples/examplevotingapp_vote:before</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    ports:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">      - <span class="number">5000</span>:<span class="number">80</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    networks:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">      - frontend</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    depends_on:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">      - redis</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">    deploy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">      replicas: <span class="number">2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">      update_config:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">        parallelism: <span class="number">2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">      restart_policy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">        condition: on-failure</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">  result:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">    image: dockersamples/examplevotingapp_result:before</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">    ports:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">      - <span class="number">5001</span>:<span class="number">80</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">    networks:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">      - backend</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">    depends_on:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">      - db</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">    deploy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">      replicas: <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">      update_config:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">        parallelism: <span class="number">2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">        delay: <span class="number">10</span>s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">      restart_policy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">        condition: on-failure</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">  worker:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">    image: dockersamples/examplevotingapp_worker</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">    networks:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">      - frontend</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">      - backend</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line">    deploy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">      mode: replicated</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line">      replicas: <span class="number">5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">      labels: [APP=VOTING]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line">      restart_policy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line">        condition: on-failure</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">68</span></pre></td><td class="code"><pre><span class="line">        delay: <span class="number">10</span>s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">69</span></pre></td><td class="code"><pre><span class="line">        max_attempts: <span class="number">3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">70</span></pre></td><td class="code"><pre><span class="line">        window: <span class="number">120</span>s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">71</span></pre></td><td class="code"><pre><span class="line">      placement:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">72</span></pre></td><td class="code"><pre><span class="line">        constraints: [node.role == manager]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">73</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">74</span></pre></td><td class="code"><pre><span class="line">  visualizer:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">75</span></pre></td><td class="code"><pre><span class="line">    image: dockersamples/visualizer</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">76</span></pre></td><td class="code"><pre><span class="line">    ports:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">77</span></pre></td><td class="code"><pre><span class="line">      - <span class="string">"8080:8080"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">78</span></pre></td><td class="code"><pre><span class="line">    stop_grace_period: <span class="number">1</span>m30s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">79</span></pre></td><td class="code"><pre><span class="line">    volumes:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">80</span></pre></td><td class="code"><pre><span class="line">      - <span class="string">"/var/run/docker.sock:/var/run/docker.sock"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">81</span></pre></td><td class="code"><pre><span class="line">    deploy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">82</span></pre></td><td class="code"><pre><span class="line">      placement:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">83</span></pre></td><td class="code"><pre><span class="line">        constraints: [node.role == manager]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">84</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">85</span></pre></td><td class="code"><pre><span class="line">networks:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">86</span></pre></td><td class="code"><pre><span class="line">  frontend:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">87</span></pre></td><td class="code"><pre><span class="line">  backend:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">88</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">89</span></pre></td><td class="code"><pre><span class="line">volumes:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">90</span></pre></td><td class="code"><pre><span class="line">  db-data:</span></pre></td></tr></table></figure>
-
 <p>部署上面的代码：</p>
 <figure class="highlight docker"><figcaption><span>stack deploy -c docker-stack.yml voteapp```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">```docker stack services STACK_NAME```可以查看此stack部署的services情况</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">```docker stack ps STACK_NAME```可以查看这个stack怎样运行的</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">基本和compose差不多，但是version要用<span class="number">3</span>或以上.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">deploy可以设置部署多个实例，update时的设置之类的。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">deploy.placement.constraints可以说设置只部署在manager node上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">如果要update整个stack，最好先改stack file然后再运行```docker -c YML_FILE stack deploy```更新stack</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">Swarm Secrect</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">-----------</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#在service中</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">Secrect会被加密储存在docker自己的Raft log中，并会分发给所有manager，当manager管理的worker需要secret时分发下去。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">所有的secrect都在/<span class="keyword">run</span><span class="bash">/secrets/的目录中, 作为一个file。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">如果在`docker service`中使用环境变量</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&gt; docker service create -e ENV_VAR_FILE=/<span class="keyword">run</span><span class="bash">/secrets/SECRET_NAME SERVICE_NAME</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">两种secret注入swarm的方法：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>）文件注入:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">在当前目录创建包含secret的文件，运行</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">&gt; docker secret create SECRET_NAME SECRET_FILE.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">坏处：密码文件在服务器中，非常危险</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>）command line注入</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">&gt; echo <span class="string">"SECRET_NAME"</span> | docker secret create SECRET_NAME -</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">坏处：如果有人进去root，可以通过bash history查找到明文密码</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">查看密码</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">&gt; docker secret inspect SECRET_NAME</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#在stack中</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">stack yml file的version需要大于等于<span class="number">3.1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">```yml</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">version: <span class="string">"3.1"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">  services:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">    psql:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">      image: postgres</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">      secrets:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">        - psql_user</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">        - psql_password</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">      enviroment:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">        POSTGRES_PASSWORD_FILE: /<span class="keyword">run</span><span class="bash">/secrets/psql_password</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">        POSTGRES_USER_FILE: /<span class="keyword">run</span><span class="bash">/secrets/psql_user</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">secrets:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">  psql_user:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">    file: ./psql_user.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">  psql_password:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">    file: ./psql_password.txt</span></pre></td></tr></table></figure>
-<p>stack中secret同样有两种注入方法，一种是用file，第二中是先用command line提前注入<br>如果用CLI注入，需要用<code>external:</code>标签标明secrets来源</p>
+<p>stack中secret同样有两种注入方法，一种是用file，第二中是先用command line提前注入<br />
+如果用CLI注入，需要用<code>external:</code>标签标明secrets来源</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">secrets:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">psql_user:</span> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">external:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">psql_password:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">external:</span></span></pre></td></tr></table></figure>
-
 <p>secrets中还可以自定义permission，可以指定某系统用户才能使用secrets</p>
 <p><strong>当deploy完成之后，要及时清理bash history或secret file</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">TCP port 2376 for secure Docker client communication. This port is required for Docker Machine to work. Docker Machine is used to orchestrate Docker hosts.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">TCP port 2377. This port is used for communication between the nodes of a Docker Swarm or cluster. It only needs to be opened on manager nodes.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">TCP and UDP port 7946 for communication among nodes (container network discovery).</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">UDP port 4789 for overlay network traffic (container ingress networking).</span></pre></td></tr></table></figure>
-
 <p>CentOS7中防火墙默认关闭</p>
 <p>查看防火墙状态</p>
 <blockquote>
@@ -302,20 +318,21 @@
 </blockquote>
 <p>【如果】在Manager的node上打开下列接口</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;2376&#x2F;tcp --permanent</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;2377&#x2F;tcp --permanent</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;tcp --permanent</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;udp --permanent</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;4789&#x2F;udp --permanent</span></pre></td></tr></table></figure>
-
-<p>【如果】<br>在worker的node上打开下列接口</p>
+<p>【如果】<br />
+在worker的node上打开下列接口</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;2376&#x2F;tcp --permanent</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;tcp --permanent</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;udp --permanent</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;4789&#x2F;udp --permanent</span></pre></td></tr></table></figure>
-
 <p>重新加载防火墙</p>
 <blockquote>
-<p>firewall-cmd –reload</p>
+<p>firewall-cmd --reload</p>
 </blockquote>
 <p>重启Docker</p>
 <blockquote>
 <p>systemctl restart docker</p>
 </blockquote>
-<h2 id="Docker-18-09-版本更新"><a href="#Docker-18-09-版本更新" class="headerlink" title="Docker 18.09 版本更新"></a>Docker 18.09 版本更新</h2><p>18.09以上的版本提供了ssh到docker的功能，具体方法是 <code>docker -H ssh://user@server</code> 然后再输入你想操作的docker指令。</p>
-<p>比如运行:<br><code>docker -H ssh://user@server run -it --rm busybox</code></p>
+<h2 id="docker-1809-版本更新"><a class="markdownIt-Anchor" href="#docker-1809-版本更新"></a> Docker 18.09 版本更新</h2>
+<p>18.09以上的版本提供了ssh到docker的功能，具体方法是 <code>docker -H ssh://user@server</code> 然后再输入你想操作的docker指令。</p>
+<p>比如运行:<br />
+<code>docker -H ssh://user@server run -it --rm busybox</code></p>
 <p>这样我们就可以直接从本地SSH到服务器的docker，并把Secret传进去从而实现目前最安全的secret部署方法。</p>
 <p>首先授权给当前用户docker的使用权，我们就不需要每次都敲sudo了</p>
 <blockquote>
@@ -323,7 +340,9 @@
 </blockquote>
 <p>然后打开terminal通过本地传secrete:</p>
 <blockquote>
-<p>echo “SECRET_NAME” | docker -H ssh://USER_NAME@YOUR_HOST secret create secret_name -<br>如果用file的当做secret的话<br>docker -H ssh://USER_NAME@YOUR_HOST secret create secret_name.txt</p>
+<p>echo “SECRET_NAME” | docker -H ssh://USER_NAME@YOUR_HOST secret create secret_name -<br />
+如果用file的当做secret的话<br />
+docker -H ssh://USER_NAME@YOUR_HOST secret create secret_name.txt</p>
 </blockquote>
 <p>成功之后会打印出secret的ID<code>xtgwhpfr6cyvqp3gnmeevorws</code>，也可以ssh进服务器使用<code>docker secret ls</code>查看是否存在刚才注入的secret</p>
 <p>这样就在服务器中完全不留痕迹的注入了secret。</p>
@@ -331,7 +350,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yvmeng.wang/2018/10/04/docker-note/" data-id="ck3vbh8f3000v7evpa3xfay0q"
+      <a data-url="http://yvmeng.wang/2018/10/04/docker-note/" data-id="ck3vctp1j000zeavp9ugzcu0g"
          class="article-share-link">Share</a>
       
     </footer>

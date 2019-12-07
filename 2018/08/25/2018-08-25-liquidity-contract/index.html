@@ -79,13 +79,15 @@
         
         
           <p><a href="http://www.liquidity-lang.org/zeronet/" target="_blank" rel="noopener">Liquidity编辑器</a></p>
-<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>合约最大的挑战是创造一个密码学安全的随机数，但由于随机数很难在链上创造出来，我们需要要求参与者每人提供一个数再结合起来。两个数结合起来的结果用于判定胜负。<br>但这个方法显然有很大的缺点，因为判定算法是公开的，所以造成了第二个人能决定游戏的胜负。为了解决这个问题，我们要求游戏参与者根据自己的数字算一个哈希值，并且预先提交他们。所有人哈希值都提交后，再要求他们提交原本的数字，胜负就会被判定。<br>因为哈希是单向的，所以输入的数字很难被算出，游戏参与者几乎不可能在提交自己数字之前算出对方已经提供的哈希值来影响结果。</p>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>我们定义游戏参与者的数据类型如下，在Liquidity中，这个数据类型叫<code>record</code>, 非常像Go语言中的<code>struct</code>, 它包含一些数据字段。</p>
+<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
+<p>合约最大的挑战是创造一个密码学安全的随机数，但由于随机数很难在链上创造出来，我们需要要求参与者每人提供一个数再结合起来。两个数结合起来的结果用于判定胜负。<br />
+但这个方法显然有很大的缺点，因为判定算法是公开的，所以造成了第二个人能决定游戏的胜负。为了解决这个问题，我们要求游戏参与者根据自己的数字算一个哈希值，并且预先提交他们。所有人哈希值都提交后，再要求他们提交原本的数字，胜负就会被判定。<br />
+因为哈希是单向的，所以输入的数字很难被算出，游戏参与者几乎不可能在提交自己数字之前算出对方已经提供的哈希值来影响结果。</p>
+<h2 id="数据类型"><a class="markdownIt-Anchor" href="#数据类型"></a> 数据类型</h2>
+<p>我们定义游戏参与者的数据类型如下，在Liquidity中，这个数据类型叫<code>record</code>, 非常像Go语言中的<code>struct</code>, 它包含一些数据字段。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type player &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  k : key;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  h : bytes;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  po : nat option;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
 <p>变量包含所有可能变量类型的一种</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type p &#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  | Register of bytes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  | Preimage of nat</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  | Resolve of unit</span></pre></td></tr></table></figure>
-
 <p>合约进入点</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let%entry main</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    (parameter : p)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    (storage : s)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  : operation list * s &#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  (* 合约代码在这里 *)</span></pre></td></tr></table></figure>
 <p>这里几个需要注意的点：</p>
@@ -98,28 +100,28 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type s &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  one : player option;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  two : player option;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>因为合约的开始并没有参与者，所以要规定option type，play是我们上面自己定义的type。option type可以包括一个定义的数据(这里是<code>play</code>)或者<code>None</code>类型。我们可以通过<code>math</code>来确定当前的数据存储类型。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">(* match statement *)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">begin match storage.one with</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">| None -&gt; (* do something *)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">| Some x -&gt; (* do something else *)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">end</span></pre></td></tr></table></figure>
-
 <p>我们之前定义了一个数据类型<code>p</code>,这个类型可以是 Rigister, Preimage, Resolve类型的一种。想一下我们的游戏进程。首先，游戏参与者进入游戏，并用一个哈希值注册进入，这是p的类型为Register; 当他公开自己的数字的时候，这时p的类型变为nat；最后当游戏胜负判定后，p的类型转变为Resolve。因为三种类型不可以同时存在，所以我们可以用一个变量类型代表所有的可能类型。</p>
 <p>变量会被编译器编译为Michelson中的 <code>or</code>. <code>record</code> 和 <code>tuple</code> 则是被编译为<code>pair</code></p>
 <p>我们可以用Current.sender ()来辨别合约参与者。()这里是代表的unit类型，是一个占位符，用于我们不需要任何数据类型的时候(有些像别的语言中void的作用)。</p>
-<p>Current.sender gives us an address, which can be compared to other addresses. If we want to transfer to the contract at that address, we have to let the compiler know what parameter type it should expect with Contract.at. If the address contains a contract with another parameter type, we will get a runtime error.</p>
+<p>Current.sender gives us an address, which can be compared to other addresses. If we want to transfer to the contract at that address, we have to let the compiler know what parameter type it should expect with <a href="http://Contract.at" target="_blank" rel="noopener">Contract.at</a>. If the address contains a contract with another parameter type, we will get a runtime error.</p>
 <p>但两个参与者注册后，他们需要提供自己的数字。数字会被根据已提交的哈希值来确认是否正确并存入storage。我们可以用之前保存的地址来确定只有合约参与人可以查看他们提供的数字。</p>
-<h2 id="写一下吧"><a href="#写一下吧" class="headerlink" title="写一下吧"></a>写一下吧</h2><p>合约执行的时候，需要按照match来执行合约，如果match不到则会报错。如果操作正确，我们会保存玩家地址并且更新对应的storage数据。</p>
+<h2 id="写一下吧"><a class="markdownIt-Anchor" href="#写一下吧"></a> 写一下吧</h2>
+<p>合约执行的时候，需要按照match来执行合约，如果match不到则会报错。如果操作正确，我们会保存玩家地址并且更新对应的storage数据。</p>
 <p>storage可以被直接更改，或者可以新建一个storage然后跟着internal operations返回出去。</p>
 <p>我们用<code>xor</code>来合并两个数字。因为xor对于bytes无效，所以我们使用数字来判定胜负。我们把结果除以2然后查余。因为分母不能为0，当分母为0的时候，返回的operation type为<code>None</code>。当除法合规时，则会返回<code>Some (result, remainder)</code>。根据余数我们来分辨哪个游戏参与者获胜。完整代码在下方，可以用<a href="http://www.liquidity-lang.org/zeronet/" target="_blank" rel="noopener">Liquidity编辑器</a>编译。可以使用test或debug深入了解代码。</p>
-<h2 id="部署智能合约到区块链"><a href="#部署智能合约到区块链" class="headerlink" title="部署智能合约到区块链"></a>部署智能合约到区块链</h2><p>部署Michelson合约时，我们需要init storage。</p>
+<h2 id="部署智能合约到区块链"><a class="markdownIt-Anchor" href="#部署智能合约到区块链"></a> 部署智能合约到区块链</h2>
+<p>部署Michelson合约时，我们需要init storage。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let%init storage &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  one &#x3D; (None : player option);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  two &#x3D; (None : player option);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>将合约编译为Michelson，你可以直接在Liquidity上面部署到区块链上面。<br>spendable和delegatable两个选项决定这个合约里的钱是否能被合约创建人花费。如果设置了spendable，那么合约创建人则可以花费智能合约里的tezzies。如果你在写一个面向大众的智能合约的时候，你可能不希望将它设置为spendable，因为合约因为里面的钱可以随意花费而失去了公信力。delegatable为是否可以将合约里的钱委托给烘焙。</p>
+<p>将合约编译为Michelson，你可以直接在Liquidity上面部署到区块链上面。<br />
+spendable和delegatable两个选项决定这个合约里的钱是否能被合约创建人花费。如果设置了spendable，那么合约创建人则可以花费智能合约里的tezzies。如果你在写一个面向大众的智能合约的时候，你可能不希望将它设置为spendable，因为合约因为里面的钱可以随意花费而失去了公信力。delegatable为是否可以将合约里的钱委托给烘焙。</p>
 <p>当合约部署后。你可以在<code>Examine</code>里面查看合约的storage，并可以在<code>Call</code>里面呼叫合约.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type p &#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  | Register of bytes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  | Preimage of nat</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  | Resolve of unit</span></pre></td></tr></table></figure>
-
-
 <p>此练习参考Martin Pospech的<a href="https://martin.pospech.cz/post/getting_started_with_liquidity/" target="_blank" rel="noopener">文章</a></p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yvmeng.wang/2018/08/25/2018-08-25-liquidity-contract/" data-id="ck3vbh8e300037evp2gh03ve6"
+      <a data-url="http://yvmeng.wang/2018/08/25/2018-08-25-liquidity-contract/" data-id="ck3vctp0g0005eavpfemm5vvq"
          class="article-share-link">Share</a>
       
     </footer>
