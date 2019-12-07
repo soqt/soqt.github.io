@@ -40,11 +40,9 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-<<<<<<< HEAD
+
 post_asset_folder: true
-=======
-post_asset_folder: false
->>>>>>> 6fb23471fc6c64da54eb4e230684fa544a2eb0c6
+
 relative_link: false
 future: true
 highlight:
